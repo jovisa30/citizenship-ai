@@ -16,6 +16,8 @@ import { GENERAL_CONTENT } from "./GeneralContent.js";
 
 dotenv.config();
 
+console.log("OPENAI KEY:", process.env.OPENAI_API_KEY ? "EXISTS" : "MISSING");
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -621,6 +623,8 @@ app.get("/", (req, res) => {
           const loading = document.getElementById("loading");
           const emptyState = document.getElementById("emptyState");
 
+          let isSending = false;
+
           function escapeHtml(text) {
             const div = document.createElement("div");
             div.innerText = text;
@@ -654,47 +658,52 @@ app.get("/", (req, res) => {
           }
 
           async function send() {
-            const message = input.value.trim();
-            if (!message) return;
+  const message = input.value.trim();
 
-            addMessage("user", message);
-            input.value = "";
-            autoResize();
-            input.focus();
-            loading.style.display = "block";
-            sendBtn.disabled = true;
+  if (!message || isSending) return;
 
-            try {
-              const res = await fetch("/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message })
-              });
+  isSending = true;
+  sendBtn.disabled = true;
+  loading.style.display = "block";
 
-              const data = await res.json();
-              addMessage("assistant", data.reply || data.error || "Có lỗi xảy ra.");
-            } catch (error) {
-              addMessage("assistant", "Có lỗi xảy ra khi gửi câu hỏi.");
-            } finally {
-              loading.style.display = "none";
-              sendBtn.disabled = false;
-            }
-          }
+  addMessage("user", message);
 
-          sendBtn.addEventListener("click", send);
+  input.value = "";
+  autoResize();
+  input.blur();
 
-          input.addEventListener("input", autoResize);
+  try {
+    const res = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+    addMessage("assistant", data.reply || data.error || "Có lỗi xảy ra.");
+  } catch (error) {
+    addMessage("assistant", "Có lỗi xảy ra khi gửi câu hỏi.");
+  } finally {
+    loading.style.display = "none";
+    sendBtn.disabled = false;
+    isSending = false;
+
+    setTimeout(() => {
+      input.focus();
+    }, 50);
+  }
+}
+
+sendBtn.addEventListener("pointerdown", function(event) {
+  event.preventDefault();
+  send();
+});
 
           input.addEventListener("keydown", function(event) {
-            const isMobile = window.innerWidth <= 700;
-
-            if (event.key === "Enter" && !event.shiftKey) {
-              if (!isMobile) {
-                event.preventDefault();
-                send();
-              }
-            }
-          });
+  if (event.isComposing) return;
+  // Không gửi bằng Enter nữa
+  // Enter sẽ chỉ xuống dòng bình thường
+});
 
           input.focus();
           autoResize();
