@@ -20,8 +20,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+console.log("OPENAI key exists:", !!process.env.OPENAI_API_KEY);
+
 const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 // ===== MAIN PROMPT =====
@@ -120,190 +122,190 @@ Format:
 
 // ===== CONTENT MAP =====
 const CONTENT_MAP = [
-  {
-    keywords: [
-      "how many parts",
-      "citizenship test",
-      "study guide",
-      "part 1",
-      "part 2",
-      "part 3",
-      "part 4",
-      "phần 1",
-      "phần 2",
-      "phần 3",
-      "phần 4",
-      "phần quan trọng",
-      "phần value",
-      "phần values",
-      "phần không được sai",
-      "phần bắt buộc đúng",
-      "value",
-      "values",
-      "mấy phần",
-      "bao nhiêu phần",
-      "bài học quốc tịch"
-    ],
-    content: GENERAL_CONTENT
-  },
-  {
-    keywords: [
-      "flag",
-      "union jack",
-      "southern cross",
-      "commonwealth star",
-      "lá cờ",
-      "cờ úc",
-      "quốc kỳ úc"
-    ],
-    content: FLAG_CONTENT
-  },
-  {
-    keywords: [
-      "coat of arms",
-      "golden wattle",
-      "opal",
-      "national flower",
-      "biểu tượng",
-      "quốc hoa",
-      "quốc huy"
-    ],
-    content: SYMBOLS_CONTENT
-  },
-  {
-    keywords: [
-      "aboriginal",
-      "torres strait islander",
-      "first inhabitants",
-      "first people",
-      "người bản địa",
-      "thổ dân",
-      "thổ dân úc",
-      "người đầu tiên ở úc",
-      "người đầu tiên ở australia"
-    ],
-    content: FIRST_INHABITANT_CONTENT
-  },
-  {
-    keywords: [
-      "first fleet",
-      "1788",
-      "gold rush",
-      "1851",
-      "convict",
-      "settlement",
-      "european settlers",
-      "định cư đầu tiên",
-      "người châu âu đến úc",
-      "đoàn tàu đầu tiên",
-      "người đầu tiên định cư",
-      "first fleet là ai",
-      "người định cư đầu tiên",
-      "định cư"
-    ],
-    content: EARLY_EUROPEAN_SETTLEMENT_CONTENT
-  },
-  {
-    keywords: [
-      "federation",
-      "1901",
-      "world war",
-      "migration",
-      "liên bang",
-      "liên bang úc",
-      "1901 là gì"
-    ],
-    content: NATION_AUSTRALIA_CONTENT
-  },
-  {
-    keywords: [
-      "state",
-      "territory",
-      "capital",
-      "capital city",
-      "new south wales",
-      "victoria",
-      "queensland",
-      "western australia",
-      "south australia",
-      "tasmania",
-      "australian capital territory",
-      "northern territory",
-      "sydney",
-      "melbourne",
-      "brisbane",
-      "perth",
-      "adelaide",
-      "hobart",
-      "canberra",
-      "darwin",
-      "tiểu bang",
-      "bang",
-      "lãnh thổ",
-      "thủ đô",
-      "thủ phủ",
-      "bao nhiêu tiểu bang",
-      "bao nhiêu bang",
-      "nước úc có bao nhiêu tiểu bang",
-      "úc có bao nhiêu tiểu bang"
-    ],
-    content: STATES_TERRITORIES_CONTENT
-  },
-  {
-    keywords: [
-      "welcome to country",
-      "acknowledgement",
-      "welcome",
-      "acknowledgement of country"
-    ],
-    content: WELCOME_ACKNOWLEDGEMENT_CONTENT
-  },
-  {
-    keywords: [
-      "anthem",
-      "advance australia fair",
-      "quốc ca"
-    ],
-    content: LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT
-  }
+    {
+        keywords: [
+            "how many parts",
+            "citizenship test",
+            "study guide",
+            "part 1",
+            "part 2",
+            "part 3",
+            "part 4",
+            "phần 1",
+            "phần 2",
+            "phần 3",
+            "phần 4",
+            "phần quan trọng",
+            "phần value",
+            "phần values",
+            "phần không được sai",
+            "phần bắt buộc đúng",
+            "value",
+            "values",
+            "mấy phần",
+            "bao nhiêu phần",
+            "bài học quốc tịch"
+        ],
+        content: GENERAL_CONTENT
+    },
+    {
+        keywords: [
+            "flag",
+            "union jack",
+            "southern cross",
+            "commonwealth star",
+            "lá cờ",
+            "cờ úc",
+            "quốc kỳ úc"
+        ],
+        content: FLAG_CONTENT
+    },
+    {
+        keywords: [
+            "coat of arms",
+            "golden wattle",
+            "opal",
+            "national flower",
+            "biểu tượng",
+            "quốc hoa",
+            "quốc huy"
+        ],
+        content: SYMBOLS_CONTENT
+    },
+    {
+        keywords: [
+            "aboriginal",
+            "torres strait islander",
+            "first inhabitants",
+            "first people",
+            "người bản địa",
+            "thổ dân",
+            "thổ dân úc",
+            "người đầu tiên ở úc",
+            "người đầu tiên ở australia"
+        ],
+        content: FIRST_INHABITANT_CONTENT
+    },
+    {
+        keywords: [
+            "first fleet",
+            "1788",
+            "gold rush",
+            "1851",
+            "convict",
+            "settlement",
+            "european settlers",
+            "định cư đầu tiên",
+            "người châu âu đến úc",
+            "đoàn tàu đầu tiên",
+            "người đầu tiên định cư",
+            "first fleet là ai",
+            "người định cư đầu tiên",
+            "định cư"
+        ],
+        content: EARLY_EUROPEAN_SETTLEMENT_CONTENT
+    },
+    {
+        keywords: [
+            "federation",
+            "1901",
+            "world war",
+            "migration",
+            "liên bang",
+            "liên bang úc",
+            "1901 là gì"
+        ],
+        content: NATION_AUSTRALIA_CONTENT
+    },
+    {
+        keywords: [
+            "state",
+            "territory",
+            "capital",
+            "capital city",
+            "new south wales",
+            "victoria",
+            "queensland",
+            "western australia",
+            "south australia",
+            "tasmania",
+            "australian capital territory",
+            "northern territory",
+            "sydney",
+            "melbourne",
+            "brisbane",
+            "perth",
+            "adelaide",
+            "hobart",
+            "canberra",
+            "darwin",
+            "tiểu bang",
+            "bang",
+            "lãnh thổ",
+            "thủ đô",
+            "thủ phủ",
+            "bao nhiêu tiểu bang",
+            "bao nhiêu bang",
+            "nước úc có bao nhiêu tiểu bang",
+            "úc có bao nhiêu tiểu bang"
+        ],
+        content: STATES_TERRITORIES_CONTENT
+    },
+    {
+        keywords: [
+            "welcome to country",
+            "acknowledgement",
+            "welcome",
+            "acknowledgement of country"
+        ],
+        content: WELCOME_ACKNOWLEDGEMENT_CONTENT
+    },
+    {
+        keywords: [
+            "anthem",
+            "advance australia fair",
+            "quốc ca"
+        ],
+        content: LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT
+    }
 ];
 
 // ===== HELPERS =====
 function getRelevantContent(question = "") {
-  const q = question.toLowerCase().trim();
+    const q = question.toLowerCase().trim();
 
-  for (const item of CONTENT_MAP) {
-    for (const keyword of item.keywords) {
-      if (q.includes(keyword)) {
-        return item.content;
-      }
+    for (const item of CONTENT_MAP) {
+        for (const keyword of item.keywords) {
+            if (q.includes(keyword)) {
+                return item.content;
+            }
+        }
     }
-  }
 
-  return "";
+    return "";
 }
 
 function isVocabQuestion(question = "") {
-  const q = question.toLowerCase().trim();
-  const isShort = q.split(" ").length <= 4;
+    const q = question.toLowerCase().trim();
+    const isShort = q.split(" ").length <= 4;
 
-  return (
-    isShort &&
-    (
-      q.includes("nghĩa là gì") ||
-      q.includes("có nghĩa là gì") ||
-      q.includes("là gì") ||
-      q.includes("dịch là gì") ||
-      q.includes("means") ||
-      q.includes("meaning")
-    )
-  );
+    return (
+        isShort &&
+        (
+            q.includes("nghĩa là gì") ||
+            q.includes("có nghĩa là gì") ||
+            q.includes("là gì") ||
+            q.includes("dịch là gì") ||
+            q.includes("means") ||
+            q.includes("meaning")
+        )
+    );
 }
 
 // ===== FRONTEND =====
 
 app.get("/", (req, res) => {
-  res.send(`
+    res.send(`
     <!DOCTYPE html>
     <html lang="vi">
       <head>
@@ -705,54 +707,56 @@ app.get("/", (req, res) => {
 
 // ===== CHAT =====
 app.post("/chat", async (req, res) => {
-  const userMessage = req.body.message || "";
+    const userMessage = req.body.message || "";
 
-  console.log("User question:", userMessage);
+    console.log("User question:", userMessage);
 
-  try {
-    if (isVocabQuestion(userMessage)) {
-      const response = await client.chat.completions.create({
-        model: "gpt-4o-mini",
-        messages: [
-          { role: "system", content: VOCAB_PROMPT },
-          { role: "user", content: userMessage }
-        ],
-      });
+    try {
+        if (isVocabQuestion(userMessage)) {
+            const response = await client.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: [
+                    { role: "system", content: VOCAB_PROMPT },
+                    { role: "user", content: userMessage }
+                ],
+            });
 
-      return res.json({
-        reply: response.choices[0].message.content
-      });
+            return res.json({
+                reply: response.choices[0].message.content
+            });
+        }
+
+        const content = getRelevantContent(userMessage);
+        console.log("Matched content:", content ? "YES" : "NO");
+
+        if (!content) {
+            return res.json({
+                reply: "❌ Đây không có trong nội dung trong bài học Quốc Tịch Úc."
+            });
+        }
+
+        const response = await client.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                { role: "system", content: SYSTEM_PROMPT },
+                { role: "system", content: "Use this study content only:\n\n" + content },
+                { role: "user", content: userMessage }
+            ],
+        });
+
+        return res.json({
+            reply: response.choices[0].message.content
+        });
+
+    } catch (error) {
+        console.error("CHAT ERROR:", error);
+        return res.json({ error: error.message || "Error" });
     }
-
-    const content = getRelevantContent(userMessage);
-    console.log("Matched content:", content ? "YES" : "NO");
-
-    if (!content) {
-      return res.json({
-        reply: "❌ Đây không có trong nội dung trong bài học Quốc Tịch Úc."
-      });
-    }
-
-    const response = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "system", content: "Use this study content only:\n\n" + content },
-        { role: "user", content: userMessage }
-      ],
-    });
-
-    return res.json({
-      reply: response.choices[0].message.content
-    });
-
-  } catch (error) {
-    console.error("CHAT ERROR:", error);
-    return res.json({ error: error.message || "Error" });
-  }
 });
 
 // ===== RUN SERVER =====
-app.listen(3000, () => {
-  console.log("Server running at http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log("Server running...");
 });
