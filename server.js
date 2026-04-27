@@ -4,28 +4,34 @@ import dotenv from "dotenv";
 import OpenAI from "openai";
 
 // ===== IMPORT CONTENT =====
-import { FLAG_CONTENT } from "./Flag_content.js";
-import { SYMBOLS_CONTENT } from "./Symbols_content.js";
-import { FIRST_INHABITANT_CONTENT } from "./First_Inhabitant_content.js";
-import { STATES_TERRITORIES_CONTENT } from "./States_Territories_content.js";
-import { NATION_AUSTRALIA_CONTENT } from "./Nation_Australia_content.js";
-import { EARLY_EUROPEAN_SETTLEMENT_CONTENT } from "./Early_European_Settlement_content.js";
-import { WELCOME_ACKNOWLEDGEMENT_CONTENT } from "./Welcome_Acknowledgement_content.js";
-import { LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT } from "./Lyric_Advance_Australia_Fair_content.js";
+import { FLAG_CONTENT } from "./Part 1/Flag_content.js";
+import { SYMBOLS_CONTENT } from "./Part 1/Symbols_content.js";
+import { FIRST_INHABITANT_CONTENT } from "./Part 1/First_Inhabitant_content.js";
+import { STATES_TERRITORIES_CONTENT } from "./Part 1/States_Territories_content.js";
+import { NATION_AUSTRALIA_CONTENT } from "./Part 1/Nation_Australia_content.js";
+import { EARLY_EUROPEAN_SETTLEMENT_CONTENT } from "./Part 1/Early_European_Settlement_content.js";
+import { WELCOME_ACKNOWLEDGEMENT_CONTENT } from "./Part 1/Welcome_Acknowledgement_content.js";
+import { LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT } from "./Part 1/Lyric_Advance_Australia_Fair_content.js";
 import { GENERAL_CONTENT } from "./GeneralContent.js";
+import { DEMOCRATIC_BELIEF_CONTENT } from "./Part 2/DEMOCRATIC_BELIEF_CONTENT.js";
+import { FREEDOMS_CONTENT } from "./Part 2/Freedoms_content.js";
+import { OUR_EQUALITIES_CONTENT } from "./Part 2/Our_Equalities_content.js";
+import { PARTICIPATION_CONTENT } from "./Part 2/PARTICIPATION_content.js";
+
+
 
 dotenv.config();
+console.log("🔥 RUNNING UPDATED SERVER VERSION 2026-04-27");
 
-console.log("OPENAI KEY:", process.env.OPENAI_API_KEY ? "EXISTS" : "MISSING");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-console.log("OPENAI key exists:", !!process.env.OPENAI_API_KEY);
+console.log("OPENAI KEY:", process.env.OPENAI_API_KEY ? "EXISTS" : "MISSING");
 
 const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 // ===== MAIN PROMPT =====
@@ -52,24 +58,25 @@ IMPORTANT:
 🎯 RESPONSE FORMAT
 =====================
 
-📍 Part:
+*** Part:
 - Say clearly which Part (Part 1, 2, 3, or 4)
 - If Part 4 → add: "⚠️ Đây là phần Values – rất quan trọng, cần chú ý"
 
-🇻🇳 Giải nghĩa:
++++ Giải nghĩa:
 - Explain in very simple Vietnamese
 - Sound like a real teacher explaining gently
 - Help the learner understand the idea, not just translate word by word
 - If there are multiple points, use short bullet points
 - Keep the tone natural and human
 
-📌 Dẫn chứng from Australian Common Bond:
+** Dẫn chứng from Australian Common Bond:
 - If the answer is short → give 1 English sentence
 - If the answer has multiple key points → give matching English sentences
 - Only use sentences from the provided study content
 - Do not invent examples
 
-🇻🇳 Dịch ví dụ:
+🇻
++++ Dịch ví dụ:
 - Translate all English evidence into simple Vietnamese
 - Do not skip any sentence
 
@@ -77,7 +84,16 @@ IMPORTANT:
 📚 STRICT RULES
 =====================
 
-1. Only use the provided study content from Australian Citizenship: Our Common Bond
+1. Use the study content as the main source.
+
+If the answer is clearly related to Australian Citizenship knowledge 
+but not found directly in the content, you may still answer using general knowledge.
+
+However:
+- Prefer answers that match the official content.
+- Keep explanation simple and suitable for learners.
+- Do NOT give visa or legal advice.
+
 2. Do not answer outside the content
 3. Do not add names, years, places, or events unless they clearly appear in the content
 4. Every factual point in the Vietnamese explanation must be supported by the content
@@ -124,193 +140,277 @@ Format:
 
 // ===== CONTENT MAP =====
 const CONTENT_MAP = [
-    {
-        keywords: [
-            "how many parts",
-            "citizenship test",
-            "study guide",
-            "part 1",
-            "part 2",
-            "part 3",
-            "part 4",
-            "phần 1",
-            "phần 2",
-            "phần 3",
-            "phần 4",
-            "phần quan trọng",
-            "phần value",
-            "phần values",
-            "phần không được sai",
-            "phần bắt buộc đúng",
-            "value",
-            "values",
-            "mấy phần",
-            "bao nhiêu phần",
-            "bài học quốc tịch"
-        ],
-        content: GENERAL_CONTENT
-    },
-    {
-        keywords: [
-            "flag",
-            "union jack",
-            "southern cross",
-            "commonwealth star",
-            "lá cờ",
-            "cờ úc",
-            "quốc kỳ úc"
-        ],
-        content: FLAG_CONTENT
-    },
-    {
-        keywords: [
-            "coat of arms",
-            "golden wattle",
-            "opal",
-            "national flower",
-            "biểu tượng",
-            "quốc hoa",
-            "quốc huy"
-        ],
-        content: SYMBOLS_CONTENT
-    },
-    {
-        keywords: [
-            "aboriginal",
-            "torres strait islander",
-            "first inhabitants",
-            "first people",
-            "người bản địa",
-            "thổ dân",
-            "thổ dân úc",
-            "người đầu tiên ở úc",
-            "người đầu tiên ở australia"
-        ],
-        content: FIRST_INHABITANT_CONTENT
-    },
-    {
-        keywords: [
-            "first fleet",
-            "1788",
-            "gold rush",
-            "1851",
-            "convict",
-            "settlement",
-            "european settlers",
-            "định cư đầu tiên",
-            "người châu âu đến úc",
-            "đoàn tàu đầu tiên",
-            "người đầu tiên định cư",
-            "first fleet là ai",
-            "người định cư đầu tiên",
-            "định cư"
-        ],
-        content: EARLY_EUROPEAN_SETTLEMENT_CONTENT
-    },
-    {
-        keywords: [
-            "federation",
-            "1901",
-            "world war",
-            "migration",
-            "liên bang",
-            "liên bang úc",
-            "1901 là gì"
-        ],
-        content: NATION_AUSTRALIA_CONTENT
-    },
-    {
-        keywords: [
-            "state",
-            "territory",
-            "capital",
-            "capital city",
-            "new south wales",
-            "victoria",
-            "queensland",
-            "western australia",
-            "south australia",
-            "tasmania",
-            "australian capital territory",
-            "northern territory",
-            "sydney",
-            "melbourne",
-            "brisbane",
-            "perth",
-            "adelaide",
-            "hobart",
-            "canberra",
-            "darwin",
-            "tiểu bang",
-            "bang",
-            "lãnh thổ",
-            "thủ đô",
-            "thủ phủ",
-            "bao nhiêu tiểu bang",
-            "bao nhiêu bang",
-            "nước úc có bao nhiêu tiểu bang",
-            "úc có bao nhiêu tiểu bang"
-        ],
-        content: STATES_TERRITORIES_CONTENT
-    },
-    {
-        keywords: [
-            "welcome to country",
-            "acknowledgement",
-            "welcome",
-            "acknowledgement of country"
-        ],
-        content: WELCOME_ACKNOWLEDGEMENT_CONTENT
-    },
-    {
-        keywords: [
-            "anthem",
-            "advance australia fair",
-            "quốc ca"
-        ],
-        content: LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT
-    }
+  {
+    keywords: [
+      "how many parts",
+      "citizenship test",
+      "study guide",
+      "part 1",
+      "part 2",
+      "part 3",
+      "part 4",
+      "phần 1",
+      "phần 2",
+      "phần 3",
+      "phần 4",
+      "phần quan trọng",
+      "phần value",
+      "phần values",
+      "phần không được sai",
+      "phần bắt buộc đúng",
+      "value",
+      "values",
+      "mấy phần",
+      "bao nhiêu phần",
+      "bài học quốc tịch"
+    ],
+    content: GENERAL_CONTENT
+  },
+  {
+    keywords: [
+      "flag",
+      "union jack",
+      "southern cross",
+      "commonwealth star",
+      "lá cờ",
+      "cờ úc",
+      "quốc kỳ úc"
+    ],
+    content: FLAG_CONTENT
+  },
+  {
+    keywords: [
+      "coat of arms",
+      "golden wattle",
+      "opal",
+      "national flower",
+      "biểu tượng",
+      "quốc hoa",
+      "quốc huy"
+    ],
+    content: SYMBOLS_CONTENT
+  },
+  {
+    keywords: [
+      "aboriginal",
+      "torres strait islander",
+      "first inhabitants",
+      "first people",
+      "người bản địa",
+      "thổ dân",
+      "thổ dân úc",
+      "người đầu tiên ở úc",
+      "người đầu tiên ở australia"
+    ],
+    content: FIRST_INHABITANT_CONTENT
+  },
+  {
+    keywords: [
+      "first fleet",
+      "1788",
+      "gold rush",
+      "1851",
+      "convict",
+      "settlement",
+      "european settlers",
+      "định cư đầu tiên",
+      "người châu âu đến úc",
+      "đoàn tàu đầu tiên",
+      "người đầu tiên định cư",
+      "first fleet là ai",
+      "người định cư đầu tiên",
+      "định cư"
+    ],
+    content: EARLY_EUROPEAN_SETTLEMENT_CONTENT
+  },
+  {
+    keywords: [
+      "federation",
+      "1901",
+      "world war",
+      "migration",
+      "liên bang",
+      "liên bang úc",
+      "1901 là gì"
+    ],
+    content: NATION_AUSTRALIA_CONTENT
+  },
+  {
+    keywords: [
+      "state",
+      "territory",
+      "capital",
+      "capital city",
+      "new south wales",
+      "victoria",
+      "queensland",
+      "western australia",
+      "south australia",
+      "tasmania",
+      "australian capital territory",
+      "northern territory",
+      "sydney",
+      "melbourne",
+      "brisbane",
+      "perth",
+      "adelaide",
+      "hobart",
+      "canberra",
+      "darwin",
+      "tiểu bang",
+      "bang",
+      "lãnh thổ",
+      "thủ đô",
+      "thủ phủ",
+      "bao nhiêu tiểu bang",
+      "bao nhiêu bang",
+      "nước úc có bao nhiêu tiểu bang",
+      "úc có bao nhiêu tiểu bang"
+    ],
+    content: STATES_TERRITORIES_CONTENT
+  },
+  {
+    keywords: [
+      "welcome to country",
+      "acknowledgement",
+      "welcome",
+      "acknowledgement of country"
+    ],
+    content: WELCOME_ACKNOWLEDGEMENT_CONTENT
+  },
+  {
+    keywords: [
+      "symbols",
+      "coat of arms",
+      "national flower",
+      "anthem"
+    ],
+    content: SYMBOLS_CONTENT
+  },
+  {
+    keywords: [
+      "rule of law",
+      "parliamentary democracy",
+      "peaceful",
+      "vote"
+    ],
+    content: DEMOCRATIC_BELIEF_CONTENT
+  },
+  {
+    keywords: [
+      "freedom of speech",
+      "freedom of association",
+      "freedom of religion",
+      "protest"
+    ],
+    content: FREEDOMS_CONTENT
+  },
+  {
+    keywords: [
+      "gender equality",
+      "equality of opportunity",
+      "qualification",
+      "men and women"
+    ],
+    content: OUR_EQUALITIES_CONTENT
+  },
+  {
+    keywords: [
+      "ato",
+      "tax",
+      "volunteer",
+      "participation",
+      "community"
+    ],
+    content: PARTICIPATION_CONTENT
+  },
+  {
+    keywords: [
+      "anthem",
+      "advance australia fair",
+      "quốc ca"
+    ],
+    content: LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT
+  }
 ];
+
+console.log("===== SERVER DEBUG START =====");
+console.log("CONTENT_MAP total:", CONTENT_MAP.length);
+
+console.log(
+  "Freedom exists in CONTENT_MAP:",
+  CONTENT_MAP.some(item =>
+    item.keywords.some(keyword =>
+      keyword.toLowerCase() === "freedom of speech"
+    )
+  )
+);
+
+console.log(
+  "Aboriginal exists in CONTENT_MAP:",
+  CONTENT_MAP.some(item =>
+    item.keywords.some(keyword =>
+      keyword.toLowerCase() === "aboriginal"
+    )
+  )
+);
+
+console.log("===== SERVER DEBUG END =====");
 
 // ===== HELPERS =====
 function getRelevantContent(question = "") {
-    const q = question.toLowerCase().trim();
+  const q = question.toLowerCase().trim();
+  if (!q) return "";
 
-    for (const item of CONTENT_MAP) {
-        for (const keyword of item.keywords) {
-            if (q.includes(keyword)) {
-                return item.content;
-            }
-        }
+  for (const item of CONTENT_MAP) {
+    const hasMatch = item.keywords.some(keyword => {
+      const k = keyword.toLowerCase().trim();
+
+      return (
+        q.includes(k) ||                     // match nguyên cụm
+        k.includes(q) ||                     // query ngắn
+        q.split(" ").some(word => k.includes(word)) // match từng từ
+      );
+    });
+
+    if (hasMatch) {
+      console.log("✅ MATCH:", item.keywords[0]);
+      return item.content;
     }
+  }
 
-    return "";
+  console.log("❌ NO MATCH");
+  return "";
 }
 
 function isVocabQuestion(question = "") {
-    const q = question.toLowerCase().trim();
-    const isShort = q.split(" ").length <= 4;
+  const q = question.toLowerCase().trim();
 
-    return (
-        isShort &&
-        (
-            q.includes("nghĩa là gì") ||
-            q.includes("có nghĩa là gì") ||
-            q.includes("là gì") ||
-            q.includes("dịch là gì") ||
-            q.includes("means") ||
-            q.includes("meaning")
-        )
-    );
+  return (
+    (
+      q.includes("nghĩa là gì") ||
+      q.includes("có nghĩa là gì") ||
+      q.includes("là gì") ||
+      q.includes("dịch là gì") ||
+      q.includes("means") ||
+      q.includes("meaning")
+    )
+  );
 }
-
 // ===== FRONTEND =====
-
 app.get("/", (req, res) => {
-    res.send(`
+  res.send(`
     <!DOCTYPE html>
     <html lang="vi">
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T13622YKY"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9T13622YKY');
+        </script>
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Australian Citizenship AI Coach</title>
@@ -658,52 +758,58 @@ app.get("/", (req, res) => {
           }
 
           async function send() {
-  const message = input.value.trim();
+            const message = input.value.trim();
 
-  if (!message || isSending) return;
+            if (!message || isSending) return;
 
-  isSending = true;
-  sendBtn.disabled = true;
-  loading.style.display = "block";
+            isSending = true;
+            sendBtn.disabled = true;
+            loading.style.display = "block";
 
-  addMessage("user", message);
+            addMessage("user", message);
 
-  input.value = "";
-  autoResize();
-  input.blur();
+            input.value = "";
+            autoResize();
+            input.blur();
 
-  try {
-    const res = await fetch("/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message })
-    });
+            try {
+              const res = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message })
+              });
 
-    const data = await res.json();
-    addMessage("assistant", data.reply || data.error || "Có lỗi xảy ra.");
-  } catch (error) {
-    addMessage("assistant", "Có lỗi xảy ra khi gửi câu hỏi.");
-  } finally {
-    loading.style.display = "none";
-    sendBtn.disabled = false;
-    isSending = false;
+              const data = await res.json();
+              addMessage("assistant", data.reply || data.error || "Có lỗi xảy ra.");
 
-    setTimeout(() => {
-      input.focus();
-    }, 50);
-  }
-}
+              if (typeof gtag === "function") {
+                gtag("event", "ask_question", {
+                  question_length: message.length
+                });
+              }
+            } catch (error) {
+              addMessage("assistant", "Có lỗi xảy ra khi gửi câu hỏi.");
+            } finally {
+              loading.style.display = "none";
+              sendBtn.disabled = false;
+              isSending = false;
 
-sendBtn.addEventListener("pointerdown", function(event) {
-  event.preventDefault();
-  send();
-});
+              setTimeout(() => {
+                input.focus();
+              }, 50);
+            }
+          }
+
+          sendBtn.addEventListener("pointerdown", function(event) {
+            event.preventDefault();
+            send();
+          });
+
+          input.addEventListener("input", autoResize);
 
           input.addEventListener("keydown", function(event) {
-  if (event.isComposing) return;
-  // Không gửi bằng Enter nữa
-  // Enter sẽ chỉ xuống dòng bình thường
-});
+            if (event.isComposing) return;
+          });
 
           input.focus();
           autoResize();
@@ -716,56 +822,61 @@ sendBtn.addEventListener("pointerdown", function(event) {
 
 // ===== CHAT =====
 app.post("/chat", async (req, res) => {
-    const userMessage = req.body.message || "";
+  const userMessage = req.body.message || "";
 
-    console.log("User question:", userMessage);
+  console.log("User question:", userMessage);
 
-    try {
-        if (isVocabQuestion(userMessage)) {
-            const response = await client.chat.completions.create({
-                model: "gpt-4o-mini",
-                messages: [
-                    { role: "system", content: VOCAB_PROMPT },
-                    { role: "user", content: userMessage }
-                ],
-            });
+  try {
+    const content = getRelevantContent(userMessage);
+    console.log("Matched content:", content ? "YES" : "NO");
 
-            return res.json({
-                reply: response.choices[0].message.content
-            });
-        }
+    if (content) {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+        {
+  role: "system",
+  content: "Use this study content only:\n\n" + JSON.stringify(content, null, 2)
+},
+          { role: "user", content: userMessage }
+        ],
+      });
 
-        const content = getRelevantContent(userMessage);
-        console.log("Matched content:", content ? "YES" : "NO");
-
-        if (!content) {
-            return res.json({
-                reply: "❌ Đây không có trong nội dung trong bài học Quốc Tịch Úc."
-            });
-        }
-
-        const response = await client.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [
-                { role: "system", content: SYSTEM_PROMPT },
-                { role: "system", content: "Use this study content only:\n\n" + content },
-                { role: "user", content: userMessage }
-            ],
-        });
-
-        return res.json({
-            reply: response.choices[0].message.content
-        });
-
-    } catch (error) {
-        console.error("CHAT ERROR:", error);
-        return res.json({ error: error.message || "Error" });
+      return res.json({
+        reply: response.choices[0].message.content
+      });
     }
+
+    if (isVocabQuestion(userMessage)) {
+      const response = await client.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: VOCAB_PROMPT },
+          { role: "user", content: userMessage }
+        ],
+      });
+
+      return res.json({
+        reply: response.choices[0].message.content
+      });
+    }
+
+    return res.json({
+      reply: "❌ Đây không có trong nội dung trong bài học Quốc Tịch Úc."
+    });
+
+  } catch (error) {
+    console.error("CHAT ERROR:", error);
+    return res.json({ error: error.message || "Error" });
+  }
 });
+
+
 
 // ===== RUN SERVER =====
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log("Server running...");
+  console.log("Server running at http://localhost:" + PORT);
 });
