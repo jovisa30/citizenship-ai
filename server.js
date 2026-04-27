@@ -301,6 +301,7 @@ const CONTENT_MAP = [
       "freedom of speech",
       "freedom of association",
       "freedom of religion",
+      "association",
       "protest"
     ],
     content: FREEDOMS_CONTENT
