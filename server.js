@@ -362,15 +362,21 @@ function getRelevantContent(question = "") {
   const q = question.toLowerCase().trim();
   if (!q) return "";
 
+  const stopWords = ["of", "the", "a", "an", "is", "are", "là", "gì", "của", "và"];
+
   for (const item of CONTENT_MAP) {
     const hasMatch = item.keywords.some(keyword => {
       const k = keyword.toLowerCase().trim();
 
-      return (
-        q.includes(k) ||                     // match nguyên cụm
-        k.includes(q) ||                     // query ngắn
-        q.split(" ").some(word => k.includes(word)) // match từng từ
-      );
+      if (q.includes(k) || k.includes(q)) {
+        return true;
+      }
+
+      const words = q
+        .split(/\s+/)
+        .filter(word => word.length > 2 && !stopWords.includes(word));
+
+      return words.some(word => k.includes(word));
     });
 
     if (hasMatch) {
