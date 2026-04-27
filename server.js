@@ -16,7 +16,7 @@ import { GENERAL_CONTENT } from "./GeneralContent.js";
 import { DEMOCRATIC_BELIEF_CONTENT } from "./part2/DEMOCRATIC_BELIEF_CONTENT.js";
 import { FREEDOMS_CONTENT } from "./part2/Freedoms_content.js";
 import { OUR_EQUALITIES_CONTENT } from "./part2/Our_Equalities_content.js";
-import { PARTICIPATION_CONTENT } from "./part2/PARTICIPATION_content.js";
+import { PARTICIPATION_CONTENT } from "./part2/participation_content.js";
 
 
 
