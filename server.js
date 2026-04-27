@@ -821,6 +821,22 @@ app.get("/", (req, res) => {
 
 
 // ===== CHAT =====
+app.get("/debug-match", (req, res) => {
+  const question = req.query.q || "freedom of speech là gì";
+  const content = getRelevantContent(question);
+
+  res.json({
+    question,
+    matched: !!content,
+    matchedPart: content?.part || null,
+    matchedSection: content?.section || null,
+    totalContentMap: CONTENT_MAP.length,
+    freedomKeywords: CONTENT_MAP.find(item =>
+      item.content === FREEDOMS_CONTENT
+    )?.keywords || []
+  });
+});
+
 app.post("/chat", async (req, res) => {
   const userMessage = req.body.message || "";
 
