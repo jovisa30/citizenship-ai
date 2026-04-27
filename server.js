@@ -4,19 +4,19 @@ import dotenv from "dotenv";
 import OpenAI from "openai";
 
 // ===== IMPORT CONTENT =====
-import { FLAG_CONTENT } from "./Part 1/Flag_content.js";
-import { SYMBOLS_CONTENT } from "./Part 1/Symbols_content.js";
-import { FIRST_INHABITANT_CONTENT } from "./Part 1/First_Inhabitant_content.js";
-import { STATES_TERRITORIES_CONTENT } from "./Part 1/States_Territories_content.js";
-import { NATION_AUSTRALIA_CONTENT } from "./Part 1/Nation_Australia_content.js";
-import { EARLY_EUROPEAN_SETTLEMENT_CONTENT } from "./Part 1/Early_European_Settlement_content.js";
-import { WELCOME_ACKNOWLEDGEMENT_CONTENT } from "./Part 1/Welcome_Acknowledgement_content.js";
-import { LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT } from "./Part 1/Lyric_Advance_Australia_Fair_content.js";
+import { FLAG_CONTENT } from "./part1/Flag_content.js";
+import { SYMBOLS_CONTENT } from "./part1/Symbols_content.js";
+import { FIRST_INHABITANT_CONTENT } from "./part1/First_Inhabitant_content.js";
+import { STATES_TERRITORIES_CONTENT } from "./part1/States_Territories_content.js";
+import { NATION_AUSTRALIA_CONTENT } from "./part1/Nation_Australia_content.js";
+import { EARLY_EUROPEAN_SETTLEMENT_CONTENT } from "./part1/Early_European_Settlement_content.js";
+import { WELCOME_ACKNOWLEDGEMENT_CONTENT } from "./part1/Welcome_Acknowledgement_content.js";
+import { LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT } from "./part1/Lyric_Advance_Australia_Fair_content.js";
 import { GENERAL_CONTENT } from "./GeneralContent.js";
-import { DEMOCRATIC_BELIEF_CONTENT } from "./Part 2/DEMOCRATIC_BELIEF_CONTENT.js";
-import { FREEDOMS_CONTENT } from "./Part 2/Freedoms_content.js";
-import { OUR_EQUALITIES_CONTENT } from "./Part 2/Our_Equalities_content.js";
-import { PARTICIPATION_CONTENT } from "./Part 2/PARTICIPATION_content.js";
+import { DEMOCRATIC_BELIEF_CONTENT } from "./part2/DEMOCRATIC_BELIEF_CONTENT.js";
+import { FREEDOMS_CONTENT } from "./part2/Freedoms_content.js";
+import { OUR_EQUALITIES_CONTENT } from "./part2/Our_Equalities_content.js";
+import { PARTICIPATION_CONTENT } from "./part2/PARTICIPATION_content.js";
 
 
 
