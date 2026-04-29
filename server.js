@@ -14,12 +14,15 @@ import { NATION_AUSTRALIA_CONTENT } from "./part1/Nation_Australia_content.js";
 import { EARLY_EUROPEAN_SETTLEMENT_CONTENT } from "./part1/Early_European_Settlement_content.js";
 import { WELCOME_ACKNOWLEDGEMENT_CONTENT } from "./part1/Welcome_Acknowledgement_content.js";
 import { LYRIC_ADVANCE_AUSTRALIA_FAIR_CONTENT } from "./part1/Lyric_Advance_Australia_Fair_content.js";
+
 import { GENERAL_CONTENT } from "./GeneralContent.js";
+
 import { DEMOCRATIC_BELIEF_CONTENT } from "./part2/DEMOCRATIC_BELIEF_CONTENT.js";
 import { FREEDOMS_CONTENT } from "./part2/Freedoms_content.js";
 import { OUR_EQUALITIES_CONTENT } from "./part2/Our_Equalities_content.js";
 import { PARTICIPATION_CONTENT } from "./part2/participation_content.js";
 
+import { HOW_DO_I_HAVE_MY_SAY_CONTENT } from "./part3/How_do_I_have_a_say_content.js";
 
 
 dotenv.config();
@@ -327,6 +330,28 @@ const CONTENT_MAP = [
     ],
     content: PARTICIPATION_CONTENT
   },
+
+  {
+  keywords: [
+    "how do i have my say",
+    "voting",
+    "vote",
+    "compulsory voting",
+    "secret ballot",
+    "aec",
+    "australian electoral commission",
+    "representative",
+    "elected representative",
+    "raise concerns",
+    "government policy",
+    "đi bầu",
+    "bầu cử",
+    "người đại diện",
+    "góp ý chính sách"
+  ],
+  content: HOW_DO_I_HAVE_MY_SAY_CONTENT
+},
+
   {
     keywords: [
       "anthem",
