@@ -27,6 +27,8 @@ import { HOW_DID_WE_ESTABLISH_GOVERNMENT_CONTENT } from "./part3/how_did_we_esta
 import { HOW_IS_POWER_CONTROLLED_CONTENT } from "./part3/How_power_controlled_content.js";
 import { HEAD_OF_STATE_CONTENT } from "./part3/head_of_state_content.js";
 import { AUSTRALIAN_LEADERS_CONTENT } from "./part3/Australian_leaders_content.js";
+import { HOW_IS_AUSTRALIA_GOVERNED_CONTENT } from "./part3/how_australia_governed_content.js";
+
 
 dotenv.config();
 console.log("🔥 RUNNING UPDATED SERVER VERSION 2026-04-27");
@@ -405,6 +407,24 @@ const CONTENT_MAP = [
   ],
   content: AUSTRALIAN_LEADERS_CONTENT
 },
+
+{
+  keywords: [
+    "how is australia governed",
+    "australian government",
+    "parliament",
+    "house of representatives",
+    "senate",
+    "state government",
+    "local government",
+    "chính phủ úc",
+    "quốc hội úc",
+    "hạ viện",
+    "thượng viện"
+  ],
+  content: HOW_IS_AUSTRALIA_GOVERNED_CONTENT
+},
+
 
 {
   keywords: [
