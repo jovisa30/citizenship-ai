@@ -1,3 +1,5 @@
+import fs from "fs";
+
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -831,6 +833,10 @@ app.get("/", (req, res) => {
 app.get("/debug-match", (req, res) => {
   const question = req.query.q || "freedom of speech là gì";
   const content = getRelevantContent(question);
+fs.appendFileSync(
+  "questions.log",
+  `\n${new Date().toISOString()} - ${userMessage}`
+);
 
   res.json({
     question,
