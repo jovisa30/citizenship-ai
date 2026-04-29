@@ -28,7 +28,7 @@ import { HOW_IS_POWER_CONTROLLED_CONTENT } from "./part3/How_power_controlled_co
 import { HEAD_OF_STATE_CONTENT } from "./part3/head_of_state_content.js";
 import { AUSTRALIAN_LEADERS_CONTENT } from "./part3/Australian_leaders_content.js";
 import { HOW_IS_AUSTRALIA_GOVERNED_CONTENT } from "./part3/How_Australia_governed_content.js";
-
+import { THREE_LEVELS_OF_GOVERNMENT_CONTENT } from "./part3/3_levels_government_content.js";
 
 dotenv.config();
 console.log("🔥 RUNNING UPDATED SERVER VERSION 2026-04-27");
@@ -406,6 +406,19 @@ const CONTENT_MAP = [
     "nghị sĩ"
   ],
   content: AUSTRALIAN_LEADERS_CONTENT
+},
+
+{
+  keywords: [
+    "three levels of government",
+    "levels of government",
+    "federal state local",
+    "government responsibilities",
+    "chính quyền úc làm gì",
+    "3 cấp chính quyền",
+    "chính phủ làm gì"
+  ],
+  content: THREE_LEVELS_OF_GOVERNMENT_CONTENT
 },
 
 {
