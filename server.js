@@ -30,6 +30,10 @@ import { AUSTRALIAN_LEADERS_CONTENT } from "./part3/Australian_leaders_content.j
 import { HOW_IS_AUSTRALIA_GOVERNED_CONTENT } from "./part3/How_Australia_governed_content.js";
 import { THREE_LEVELS_OF_GOVERNMENT_CONTENT } from "./part3/3_levels_government_content.js";
 import { POLITICAL_PARTIES_CONTENT } from "./part3/political_party_content.js";
+import { HOW_IS_GOVERNMENT_FORMED_CONTENT } from "./part3/how_government_formed_content.js";
+
+
+
 dotenv.config();
 console.log("🔥 RUNNING UPDATED SERVER VERSION 2026-04-27");
 
@@ -455,6 +459,23 @@ const CONTENT_MAP = [
   content: HOW_IS_AUSTRALIA_GOVERNED_CONTENT
 },
 
+{
+  keywords: [
+    "government formed",
+    "how is government formed",
+    "formation of government",
+    "federal election",
+    "prime minister",
+    "opposition",
+    "cabinet",
+    "ministers",
+    "chính phủ được thành lập",
+    "bầu cử liên bang",
+    "thủ tướng",
+    "phe đối lập"
+  ],
+  content: HOW_IS_GOVERNMENT_FORMED_CONTENT
+},
 
 {
   keywords: [
