@@ -24,6 +24,7 @@ import { PARTICIPATION_CONTENT } from "./part2/participation_content.js";
 
 import { HOW_DO_I_HAVE_MY_SAY_CONTENT } from "./part3/How_do_I_have_a_say_content.js";
 import { HOW_DID_WE_ESTABLISH_GOVERNMENT_CONTENT } from "./part3/how_did_we_establish_system_government_content.js";
+import { HOW_IS_POWER_CONTROLLED_CONTENT } from "./part3/how_power_controlled_content.js";
 
 dotenv.config();
 console.log("🔥 RUNNING UPDATED SERVER VERSION 2026-04-27");
@@ -364,6 +365,24 @@ const CONTENT_MAP = [
     "góp ý chính sách"
   ],
   content: HOW_DO_I_HAVE_MY_SAY_CONTENT
+},
+
+{
+  keywords: [
+    "power of government",
+    "separation of powers",
+    "legislative power",
+    "executive power",
+    "judicial power",
+    "parliament power",
+    "court power",
+    "quyền lực chính phủ",
+    "phân chia quyền lực",
+    "lập pháp",
+    "hành pháp",
+    "tư pháp"
+  ],
+  content: HOW_IS_POWER_CONTROLLED_CONTENT
 },
 
   {
