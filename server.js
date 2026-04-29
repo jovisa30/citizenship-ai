@@ -29,7 +29,7 @@ import { HEAD_OF_STATE_CONTENT } from "./part3/head_of_state_content.js";
 import { AUSTRALIAN_LEADERS_CONTENT } from "./part3/Australian_leaders_content.js";
 import { HOW_IS_AUSTRALIA_GOVERNED_CONTENT } from "./part3/How_Australia_governed_content.js";
 import { THREE_LEVELS_OF_GOVERNMENT_CONTENT } from "./part3/3_levels_government_content.js";
-
+import { POLITICAL_PARTIES_CONTENT } from "./part3/political_party_content.js";
 dotenv.config();
 console.log("🔥 RUNNING UPDATED SERVER VERSION 2026-04-27");
 
@@ -279,6 +279,23 @@ const CONTENT_MAP = [
     ],
     content: STATES_TERRITORIES_CONTENT
   },
+
+  {
+  keywords: [
+    "political party",
+    "political parties",
+    "liberal party",
+    "labor party",
+    "nationals",
+    "australian greens",
+    "independents",
+    "join a political party",
+    "đảng chính trị",
+    "người độc lập"
+  ],
+  content: POLITICAL_PARTIES_CONTENT
+},
+
   {
     keywords: [
       "welcome to country",
