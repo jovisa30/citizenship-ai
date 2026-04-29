@@ -23,7 +23,7 @@ import { OUR_EQUALITIES_CONTENT } from "./part2/Our_Equalities_content.js";
 import { PARTICIPATION_CONTENT } from "./part2/participation_content.js";
 
 import { HOW_DO_I_HAVE_MY_SAY_CONTENT } from "./part3/How_do_I_have_a_say_content.js";
-
+import { HOW_DID_WE_ESTABLISH_GOVERNMENT_CONTENT } from "./part3/how_did_we_establish_system_government_content.js";
 
 dotenv.config();
 console.log("🔥 RUNNING UPDATED SERVER VERSION 2026-04-27");
@@ -331,6 +331,20 @@ const CONTENT_MAP = [
     content: PARTICIPATION_CONTENT
   },
 
+  {
+  keywords: [
+    "federation",
+    "1901",
+    "constitution",
+    "australian constitution",
+    "referendum",
+    "double majority",
+    "hiến pháp",
+    "liên bang úc",
+    "trưng cầu dân ý"
+  ],
+  content: HOW_DID_WE_ESTABLISH_GOVERNMENT_CONTENT
+},
   {
   keywords: [
     "how do i have my say",
